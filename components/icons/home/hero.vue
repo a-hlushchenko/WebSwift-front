@@ -1,0 +1,37 @@
+<template>
+  <svg
+    width="500"
+    height="500"
+    viewBox="0 0 500 500"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="1.5"
+      y="101.5"
+      width="397"
+      height="397"
+      rx="10.5"
+      stroke="#FB7D09"
+      stroke-width="3"
+    />
+    <rect
+      x="51.5"
+      y="51.5"
+      width="397"
+      height="397"
+      rx="10.5"
+      stroke="#FB7D09"
+      stroke-width="3"
+    />
+    <rect
+      x="101.5"
+      y="1.5"
+      width="397"
+      height="397"
+      rx="10.5"
+      stroke="#FB7D09"
+      stroke-width="3"
+    />
+  </svg>
+</template>
