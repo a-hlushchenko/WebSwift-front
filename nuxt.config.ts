@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     lazy: true,
     strategy: "prefix_except_default",
-    // differentDomains: true,
+    differentDomains: true,
     locales: [
       {
         code: "en",
