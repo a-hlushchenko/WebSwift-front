@@ -40,6 +40,7 @@ export default defineNuxtConfig({
         file: "en.ts",
         language: "en",
         domain: "web-swift.co",
+        domainDefault: true,
       },
       {
         code: "ua",
@@ -47,6 +48,7 @@ export default defineNuxtConfig({
         file: "ua.ts",
         language: "uk",
         domain: "ua.web-swift.co",
+        domainDefault: true,
       },
     ],
     experimental: {

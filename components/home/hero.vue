@@ -25,7 +25,7 @@ function openForm() {
       </div>
     </GeneralContainer>
 
-    <NuxtLink to="/#about">
+    <NuxtLink to="/#about" aria-label="About">
       <IconsHomeMouse class="hero-mouse" />
     </NuxtLink>
   </GeneralSection>
