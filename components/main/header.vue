@@ -4,6 +4,20 @@ const switchLocalePath = useSwitchLocalePath();
 
 const formStore = useFormStore();
 
+const isMenu = ref(false);
+
+function toogleMenu() {
+  isMenu.value = !isMenu.value;
+}
+
+watchEffect(() => {
+  if (isMenu.value) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+});
+
 function openForm() {
   formStore.setInitiator("Header");
   formStore.openForm();
@@ -33,11 +47,16 @@ function openForm() {
           </GeneralFlex>
         </GeneralFlex>
 
-        <NuxtLink to="/" aria-label="Home">
+        <NuxtLink to="/" aria-label="Home" class="header-logo-wrapper">
           <Icon name="my:webswift" size="40" class="header-logo" />
         </NuxtLink>
 
-        <GeneralFlex big class="links-list">
+        <GeneralFlex
+          big
+          class="links-list"
+          :class="{ active: isMenu }"
+          @click="toogleMenu"
+        >
           <NuxtLink
             class="header-link"
             :to="$t(`home.header.link-${link}`)"
@@ -45,13 +64,30 @@ function openForm() {
           >
             {{ $t(`home.header.name-${link}`) }}
           </NuxtLink>
+          <template v-if="isMenu">
+            <GeneralDivider style="width: 50%" />
+            <GeneralFlex center>
+              <NuxtLink
+                :href="switchLocalePath(loc.code)"
+                v-for="loc in locales"
+                class="header-lang"
+                :class="{ active: locale === loc.code }"
+              >
+                {{ loc.name }}
+              </NuxtLink>
+            </GeneralFlex>
+          </template>
         </GeneralFlex>
 
-        <div class="menu-icon">
+        <div class="menu-icon" @click="toogleMenu">
           <span v-for="n in 3"></span>
         </div>
       </GeneralFlex>
     </GeneralContainer>
+
+    <Transition name="menu-wrapper">
+      <div v-if="isMenu" class="menu-wrapper" @click="toogleMenu"></div>
+    </Transition>
 
     <svg
       style="position: absolute"
@@ -128,8 +164,10 @@ function openForm() {
 }
 
 .menu-icon {
+  z-index: 1;
   width: 40px;
   height: 40px;
+  background-color: var(--bg);
   border: 2px solid var(--main);
   border-radius: 50%;
   gap: 2px;
@@ -147,6 +185,22 @@ function openForm() {
   }
 }
 
+.menu-wrapper {
+  height: calc(100vh - var(--header));
+  width: 100%;
+  position: fixed;
+  top: var(--header);
+  z-index: -1;
+  left: 0;
+  background-color: #0000003d;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-wrapper-enter-from,
+.menu-wrapper-leave-to {
+  opacity: 0;
+}
+
 @media all and (max-width: 1200px) {
   .links-list {
     gap: 1.25rem;
@@ -158,9 +212,32 @@ function openForm() {
 }
 
 @media all and (max-width: 1023px) {
-  .links-list,
   .header-button {
     display: none;
+  }
+
+  .links-list {
+    transform: translateY(-1rem);
+    opacity: 0;
+    display: flex;
+    position: fixed;
+    top: var(--header);
+    left: 0px;
+    background-color: var(--bg);
+    padding: 1.5rem;
+    width: 100%;
+    flex-direction: column;
+    border-bottom: 2px solid var(--main);
+    border-radius: 0px 0px 1.5rem 1.5rem;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
   }
 
   .header-lang-list {
@@ -173,6 +250,11 @@ function openForm() {
 
   .header-logo {
     height: 32px;
+  }
+
+  .header-logo-wrapper {
+    z-index: 1;
+    background-color: var(--bg);
   }
 
   .header-wrapper {

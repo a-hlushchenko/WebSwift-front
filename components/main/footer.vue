@@ -134,7 +134,7 @@ async function sendForm() {
           <GeneralDivider />
           <GeneralFlex space>
             <GeneralText big>{{ $t("home.footer.copyright") }}</GeneralText>
-            <Icon name="my:webswift" size="40" />
+            <Icon name="my:webswift" size="40" class="footer-logo" />
           </GeneralFlex>
         </GeneralFlex>
       </GeneralContainer>
@@ -234,6 +234,10 @@ async function sendForm() {
 
   .form-button {
     width: 100%;
+  }
+
+  .footer-logo {
+    display: none;
   }
 }
 </style>
