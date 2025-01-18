@@ -20,6 +20,7 @@ const props = defineProps<{ mini?: boolean; fit?: boolean; more?: boolean }>();
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text);
   gap: 1.25rem;
   transition: all 0.3s ease-in-out;
 
@@ -62,7 +63,16 @@ const props = defineProps<{ mini?: boolean; fit?: boolean; more?: boolean }>();
   width: 28px;
   height: 28px;
   border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   transition: all 0.3s;
+}
+
+@media all and (max-width: 1200px) {
+  .button {
+    font-size: 1rem;
+  }
 }
 </style>

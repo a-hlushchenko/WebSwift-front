@@ -9,12 +9,12 @@
             $t("home.about.text")
           }}</GeneralText>
         </GeneralFlex>
-        <GeneralFlex space center>
-          <GeneralFlex column big center v-for="number in 4" class="about-item">
-            <span class="about-number">{{
-              $t(`home.about.number-${number}`)
-            }}</span>
-            <GeneralTitle light>{{
+        <GeneralFlex space center class="about-list">
+          <GeneralFlex column center v-for="number in 4" class="about-item">
+            <div class="about-number">
+              {{ $t(`home.about.number-${number}`) }}
+            </div>
+            <GeneralTitle light style="text-align: center">{{
               $t(`home.about.number-title-${number}`)
             }}</GeneralTitle>
           </GeneralFlex>
@@ -39,12 +39,28 @@
 .about-number {
   color: var(--main);
   font-size: 4rem;
+  line-height: 4rem;
   transition: all 0.3s ease-in-out;
 }
 
 .about-item:hover {
   .about-number {
     transform: scale(1.1);
+  }
+}
+
+@media all and (max-width: 767px) {
+  .about-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-number {
+    font-size: 3rem;
+    line-height: 3rem;
   }
 }
 </style>

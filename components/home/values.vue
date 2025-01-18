@@ -5,22 +5,28 @@
         <GeneralTitle light h2>{{ $t("home.values.title") }}</GeneralTitle>
         <div class="values">
           <GeneralBox big dark v-for="value in 4" class="value-item">
-            <GeneralFlex center>
+            <GeneralFlex center class="value-item-content">
               <div class="value-img-wrapper">
                 <img
                   :src="$t(`home.values.img-${value}`)"
                   alt="image"
                   width="70px"
+                  class="value-img"
                 />
               </div>
-              <GeneralFlex column mini>
-                <GeneralFlex column mini style="width: fit-content">
+              <GeneralFlex column mini class="value-item-right">
+                <GeneralFlex
+                  column
+                  mini
+                  style="width: fit-content"
+                  class="value-item-right"
+                >
                   <GeneralTitle light>
                     {{ $t(`home.values.value-${value}`) }}
                   </GeneralTitle>
                   <GeneralDivider />
                 </GeneralFlex>
-                <GeneralText light big>{{
+                <GeneralText light big class="value-item-text">{{
                   $t(`home.values.text-${value}`)
                 }}</GeneralText>
               </GeneralFlex>
@@ -61,6 +67,50 @@
     .value-img-wrapper {
       border-color: var(--main);
     }
+  }
+}
+
+@media all and (max-width: 1023px) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+
+  .value-img-wrapper {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .value-img {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .value-img-wrapper {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .value-img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .value-item {
+    padding: 0.75rem;
+  }
+
+  .value-item-content {
+    gap: 0.5rem;
+  }
+
+  .value-item-right {
+    gap: 0.25rem;
+  }
+
+  .value-item-text {
+    font-size: 0.87rem;
   }
 }
 </style>

@@ -52,6 +52,12 @@ import "./assets/css/index.css";
   --header: 4rem;
 }
 
+@media (max-width: 1023px) {
+  :root {
+    --header: 56px;
+  }
+}
+
 ::selection {
   background-color: var(--main);
   color: var(--text);

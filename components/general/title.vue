@@ -37,10 +37,7 @@ const props = defineProps<{
   }
 }
 
-.h1 {
-  font-size: 2rem;
-}
-
+.h1,
 .h2 {
   font-size: 2rem;
 }
@@ -62,7 +59,19 @@ const props = defineProps<{
 .fitHeight {
   line-height: 100%;
 }
+
 .light {
   color: var(--secondary-text);
+}
+
+@media all and (max-width: 1200px) {
+  .title {
+    font-size: 1.12rem;
+  }
+
+  .h1,
+  .h2 {
+    font-size: 1.5rem;
+  }
 }
 </style>

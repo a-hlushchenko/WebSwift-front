@@ -41,4 +41,10 @@ const props = defineProps<{
 .big {
   padding: 1.5rem;
 }
+
+@media all and (max-width: 1200px) {
+  .big {
+    padding: 1rem;
+  }
+}
 </style>

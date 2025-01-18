@@ -14,13 +14,13 @@ function openForm() {
         <GeneralTitle h2>{{ $t("home.services.title") }}</GeneralTitle>
         <div class="services">
           <GeneralBox shadow big v-for="service in 6" class="service">
-            <GeneralFlex column>
+            <GeneralFlex column class="service-content">
               <img
                 :src="$t(`home.services.img-${service}`)"
                 width="100"
                 alt="image"
               />
-              <GeneralTitle>{{
+              <GeneralTitle fitHeight>{{
                 $t(`home.services.service-${service}`)
               }}</GeneralTitle>
               <GeneralText big>{{
@@ -46,5 +46,21 @@ function openForm() {
 
 .service:hover {
   box-shadow: 0px 0px 20px var(--main);
+}
+
+@media all and (max-width: 1023px) {
+  .services {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-content {
+    gap: 0.75rem;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .services {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

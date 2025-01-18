@@ -34,4 +34,14 @@ const props = defineProps<{
 .light {
   color: var(--secondary-text);
 }
+
+@media all and (max-width: 1200px) {
+  .text {
+    font-size: 0.87rem;
+  }
+
+  .big {
+    font-size: 1rem;
+  }
+}
 </style>

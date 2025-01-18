@@ -13,6 +13,8 @@ const isDisabled = computed(() => !contact.value);
 const isLoading = ref(false);
 
 function close() {
+  if (isLoading.value) return;
+
   isFormPopup.value = false;
   isSuccessPopup.value = false;
   clearFopm();
@@ -43,26 +45,34 @@ async function sendForm() {
   if (isDisabled.value || isLoading.value) return;
 
   isLoading.value = true;
+  setTimeout(async () => {
+    const res = await sendFeedback({
+      lang: locale.value,
+      contact: contact.value,
+      message: message.value,
+      section: initiatorSection.value,
+    });
 
-  const res = await sendFeedback({
-    lang: locale.value,
-    contact: contact.value,
-    message: message.value,
-    section: initiatorSection.value,
-  });
-
-  if (res?.status) {
-    close();
-    setTimeout(() => {
-      isSuccessPopup.value = true;
-    }, 300);
-    clearFopm();
-  } else {
-    errorMessage.value = res?.message;
-  }
-
-  isLoading.value = false;
+    if (res?.status) {
+      isLoading.value = false;
+      close();
+      setTimeout(() => {
+        isSuccessPopup.value = true;
+      }, 300);
+      clearFopm();
+    } else {
+      errorMessage.value = res?.message;
+    }
+  }, 5000);
 }
+
+watchEffect(() => {
+  if (isFormPopup.value || isSuccessPopup.value) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+});
 </script>
 
 <template>
@@ -112,9 +122,13 @@ async function sendForm() {
               </GeneralText>
             </Transition>
           </div>
-          <GeneralFlex space center>
-            <GeneralButton @click="sendForm" :class="{ disabled: isDisabled }">
-              <GeneralLoader v-if="isLoading" width="24px" height="24px" />
+          <GeneralFlex space center class="actions">
+            <GeneralButton
+              @click="sendForm"
+              :class="{ disabled: isDisabled }"
+              class="form-button"
+            >
+              <GeneralLoader v-if="isLoading" width="1rem" height="1rem" />
               <span v-else>{{ $t("home.form.button") }}</span>
             </GeneralButton>
             <NuxtLink to="/#contacts" @click="close" class="contact-yourself">
@@ -258,6 +272,7 @@ async function sendForm() {
     opacity: 0.7;
   }
 }
+
 .success {
   width: 350px;
   min-height: 350px;
@@ -266,8 +281,41 @@ async function sendForm() {
   align-items: center;
   justify-content: center;
 }
+
 .success-text {
   max-width: 300px;
   text-align: center;
+}
+
+@media all and (max-width: 1200px) {
+  .close-btn {
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .cases {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case:last-child {
+    max-width: unset;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-yourself {
+    text-align: start;
+  }
+
+  .form-button {
+    width: 100%;
+  }
 }
 </style>

@@ -10,7 +10,7 @@
               <GeneralTitle>{{
                 $t(`home.stages.stage-${stage}`)
               }}</GeneralTitle>
-              <GeneralText big class="stage-text">
+              <GeneralText class="stage-text">
                 {{ $t(`home.stages.text-${stage}`) }}
               </GeneralText>
             </GeneralFlex>
@@ -104,6 +104,65 @@
   .number {
     border-radius: 2rem;
     box-shadow: 0px 0px 10px var(--main);
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .stages {
+    grid-template-columns: 1fr 200px 1fr;
+    gap: 0px 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .lines {
+    width: 200px;
+    margin-top: 20px;
+  }
+
+  .stage:nth-child(even) {
+    transform: translateY(65px);
+  }
+}
+
+@media all and (max-width: 1023px) {
+  .stages {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-bottom: 0;
+    justify-items: start;
+  }
+
+  .lines {
+    display: none;
+  }
+
+  .stage {
+    .number {
+      order: -1;
+    }
+  }
+
+  .stage-content {
+    align-items: start !important;
+  }
+
+  .stage-text {
+    text-align: start !important;
+  }
+
+  .stage:nth-child(even) {
+    transform: unset;
+  }
+
+  .number {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .stages {
+    grid-template-columns: 1fr;
   }
 }
 </style>

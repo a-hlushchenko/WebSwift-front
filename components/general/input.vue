@@ -42,6 +42,8 @@ const model = defineModel<any>();
 
 .textarea {
   field-sizing: content;
+  word-break: break-word;
+  line-height: 125%;
   min-height: calc(4lh + 1.5rem);
 }
 </style>

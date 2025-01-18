@@ -3,8 +3,13 @@
     <GeneralContainer>
       <GeneralFlex column section>
         <GeneralTitle h2>{{ $t("home.cases.title") }}</GeneralTitle>
-        <GeneralFlex>
-          <GeneralBox shadow v-for="cases in 3" style="padding: 0px">
+        <GeneralFlex class="cases">
+          <GeneralBox
+            shadow
+            v-for="cases in 3"
+            style="padding: 0px"
+            class="case"
+          >
             <div>
               <img
                 class="case-img"
@@ -25,9 +30,7 @@
                     </GeneralButton>
                   </NuxtLink>
                 </GeneralFlex>
-                <GeneralText big>{{
-                  $t(`home.cases.text-${cases}`)
-                }}</GeneralText>
+                <GeneralText>{{ $t(`home.cases.text-${cases}`) }}</GeneralText>
                 <GeneralDivider dashed />
                 <GeneralText big>{{
                   $t(`home.cases.stack-${cases}`)
@@ -49,5 +52,29 @@
 
 .case-content {
   padding: 1rem;
+}
+
+@media all and (max-width: 1023px) {
+  .cases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+
+  .case:last-child {
+    grid-column: 1/ 3;
+    max-width: 50%;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .cases {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case:last-child {
+    max-width: unset;
+  }
 }
 </style>

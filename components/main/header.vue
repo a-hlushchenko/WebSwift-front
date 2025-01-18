@@ -15,9 +15,12 @@ function openForm() {
     <GeneralContainer>
       <GeneralFlex center space>
         <GeneralFlex big>
-          <GeneralButton @click="openForm">
+          <GeneralButton @click="openForm" class="header-button">
             {{ $t("home.header.button") }}
           </GeneralButton>
+          <div class="menu-icon header-button-mobile" @click="openForm">
+            <img src="/img/main/contact.svg" alt="" width="20" />
+          </div>
           <GeneralFlex class="header-lang-list" center>
             <NuxtLink
               :href="switchLocalePath(loc.code)"
@@ -31,10 +34,10 @@ function openForm() {
         </GeneralFlex>
 
         <NuxtLink to="/" aria-label="Home">
-          <Icon name="my:webswift" size="40" />
+          <Icon name="my:webswift" size="40" class="header-logo" />
         </NuxtLink>
 
-        <GeneralFlex big>
+        <GeneralFlex big class="links-list">
           <NuxtLink
             class="header-link"
             :to="$t(`home.header.link-${link}`)"
@@ -43,6 +46,10 @@ function openForm() {
             {{ $t(`home.header.name-${link}`) }}
           </NuxtLink>
         </GeneralFlex>
+
+        <div class="menu-icon">
+          <span v-for="n in 3"></span>
+        </div>
       </GeneralFlex>
     </GeneralContainer>
 
@@ -83,7 +90,7 @@ function openForm() {
 
 <style scoped>
 .header-wrapper {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   position: sticky;
   z-index: 10;
   width: 100%;
@@ -117,6 +124,55 @@ function openForm() {
 
   &:hover {
     color: var(--main);
+  }
+}
+
+.menu-icon {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--main);
+  border-radius: 50%;
+  gap: 2px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+
+  span {
+    display: block;
+    height: 2px;
+    border-radius: 10px;
+    background-color: var(--main);
+    width: 50%;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .links-list {
+    gap: 1.25rem;
+  }
+
+  .header-link {
+    gap: 1rem;
+  }
+}
+
+@media all and (max-width: 1023px) {
+  .links-list,
+  .header-button {
+    display: none;
+  }
+
+  .header-lang-list {
+    display: none;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  .header-logo {
+    height: 32px;
   }
 }
 </style>

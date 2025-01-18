@@ -56,7 +56,7 @@ async function sendForm() {
     <GeneralSection>
       <GeneralContainer>
         <GeneralFlex column section>
-          <GeneralFlex space>
+          <GeneralFlex space class="footer-top">
             <GeneralFlex column>
               <GeneralTitle>{{ $t("home.footer.links-title") }}</GeneralTitle>
               <GeneralFlex column mini>
@@ -102,7 +102,7 @@ async function sendForm() {
               <GeneralText big>
                 {{ $t("home.footer.form-text") }}
               </GeneralText>
-              <GeneralFlex center>
+              <GeneralFlex center class="form-main">
                 <div class="input-wrapper">
                   <GeneralInput
                     v-model="contact"
@@ -119,6 +119,7 @@ async function sendForm() {
                   fit
                   @click="sendForm"
                   :class="{ disabled: isDisabled }"
+                  class="form-button"
                 >
                   {{ $t("home.footer.form-button") }}
                 </GeneralButton>
@@ -211,5 +212,28 @@ async function sendForm() {
 .error-enter-from,
 .error-leave-to {
   max-height: 0lh;
+}
+
+@media all and (max-width: 1023px) {
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 1rem;
+  }
+
+  .form {
+    order: -1;
+    grid-column: 1 / 3;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .form-main {
+    display: grid;
+  }
+
+  .form-button {
+    width: 100%;
+  }
 }
 </style>

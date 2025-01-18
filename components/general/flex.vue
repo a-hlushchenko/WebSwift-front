@@ -58,4 +58,26 @@ const props = defineProps<{
 .wfull {
   width: 100%;
 }
+
+@media all and (max-width: 1200px) {
+  .flex {
+    /* gap: 0.75rem; */
+  }
+
+  .mini {
+    gap: 0.5rem;
+  }
+
+  .small {
+    gap: 0.25rem;
+  }
+
+  .big {
+    gap: 1.5rem;
+  }
+
+  .section {
+    gap: 2rem;
+  }
+}
 </style>

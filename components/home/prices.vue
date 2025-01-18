@@ -11,11 +11,11 @@ function openForm() {
   <GeneralSection dark id="prices" class="about-wrapper">
     <GeneralContainer>
       <div class="prices">
-        <GeneralFlex column section>
+        <GeneralFlex column section class="prices-main">
           <GeneralTitle light h2>{{ $t("home.prices.title") }}</GeneralTitle>
 
-          <GeneralFlex column>
-            <GeneralFlex center v-for="desc in 4">
+          <GeneralFlex column class="desc-list">
+            <GeneralFlex center v-for="desc in 4" class="desc-item">
               <span class="circle"></span>
               <GeneralText big light>{{
                 $t(`home.prices.desc-${desc}`)
@@ -72,6 +72,7 @@ function openForm() {
   width: 16px;
   height: 16px;
   border-radius: 50%;
+  flex-shrink: 0;
   border: 4px solid var(--main);
 }
 
@@ -82,6 +83,38 @@ function openForm() {
   &:hover {
     box-shadow: 0px 0px 10px var(--main);
     /* border-color: var(--main) !important; */
+  }
+}
+
+@media all and (max-width: 1023px) {
+  .desc-item {
+    gap: 0.75rem;
+  }
+
+  .prices {
+    grid-template-columns: 5.5fr 4.5fr;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .desc-item {
+    gap: 0.75rem;
+  }
+
+  .prices {
+    grid-template-columns: 1fr;
+  }
+
+  .prices-box {
+    order: -1;
+  }
+
+  .prices-main {
+    gap: 1rem;
+  }
+
+  .desc-list {
+    gap: 0.75rem;
   }
 }
 </style>

@@ -17,4 +17,10 @@ const props = defineProps<{ dark?: boolean }>();
 .dark {
   background-color: var(--secondary-bg);
 }
+
+@media all and (max-width: 1200px) {
+  .section {
+    padding: 3rem 0;
+  }
+}
 </style>
