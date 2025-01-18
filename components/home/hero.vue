@@ -24,6 +24,8 @@ const initialPositions = reactive({
 });
 
 const handleMouseMove = (event: MouseEvent) => {
+  if (!process.client) return;
+
   if (window.innerWidth < 1400) return;
 
   if (!element1.value || !element2.value) return;
@@ -50,8 +52,6 @@ const handleMouseMove = (event: MouseEvent) => {
 
   element1.value.classList.remove("rect1");
   element2.value.classList.remove("rect2");
-
-  console.log("unset");
 
   const offsetX = mouseX - centerX;
   const offsetY = mouseY - centerY;

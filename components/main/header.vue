@@ -15,10 +15,12 @@ function closeMenu() {
 }
 
 watchEffect(() => {
-  if (isMenu.value) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
+  if (process.client) {
+    if (isMenu.value) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   }
 });
 

@@ -2,13 +2,15 @@
 const { t } = useI18n();
 const head = useLocaleHead();
 
-useHead({
-  meta: [
-    {
-      name: "description",
-      content: t("home.head.description"),
-    },
-  ],
+useSeoMeta({
+  description: t("home.head.description"),
+  ogTitle: "WebSwift",
+  ogDescription: t("home.head.description"),
+  ogImage: "https://web-swift.co/logo.png",
+  twitterTitle: "WebSwift",
+  twitterDescription: t("home.head.description"),
+  twitterImage: "http://web-swift.co/logo.png",
+  ogUrl: "https://web-swift.co",
 });
 </script>
 
