@@ -45,25 +45,23 @@ async function sendForm() {
   if (isDisabled.value || isLoading.value) return;
 
   isLoading.value = true;
-  setTimeout(async () => {
-    const res = await sendFeedback({
-      lang: locale.value,
-      contact: contact.value,
-      message: message.value,
-      section: initiatorSection.value,
-    });
+  const res = await sendFeedback({
+    lang: locale.value,
+    contact: contact.value,
+    message: message.value,
+    section: initiatorSection.value,
+  });
 
-    if (res?.status) {
-      isLoading.value = false;
-      close();
-      setTimeout(() => {
-        isSuccessPopup.value = true;
-      }, 300);
-      clearFopm();
-    } else {
-      errorMessage.value = res?.message;
-    }
-  }, 5000);
+  if (res?.status) {
+    isLoading.value = false;
+    close();
+    setTimeout(() => {
+      isSuccessPopup.value = true;
+    }, 300);
+    clearFopm();
+  } else {
+    errorMessage.value = res?.message;
+  }
 }
 
 watchEffect(() => {

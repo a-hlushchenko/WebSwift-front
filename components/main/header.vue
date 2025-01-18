@@ -6,8 +6,12 @@ const formStore = useFormStore();
 
 const isMenu = ref(false);
 
-function toogleMenu() {
-  isMenu.value = !isMenu.value;
+function openMenu() {
+  isMenu.value = true;
+}
+
+function closeMenu() {
+  isMenu.value = false;
 }
 
 watchEffect(() => {
@@ -51,12 +55,7 @@ function openForm() {
           <Icon name="my:webswift" size="40" class="header-logo" />
         </NuxtLink>
 
-        <GeneralFlex
-          big
-          class="links-list"
-          :class="{ active: isMenu }"
-          @click="toogleMenu"
-        >
+        <GeneralFlex big class="links-list" :class="{ active: isMenu }">
           <NuxtLink
             class="header-link"
             :to="$t(`home.header.link-${link}`)"
@@ -64,8 +63,8 @@ function openForm() {
           >
             {{ $t(`home.header.name-${link}`) }}
           </NuxtLink>
-          <template v-if="isMenu">
-            <GeneralDivider style="width: 50%" />
+          <GeneralFlex class="menu-bottom" column>
+            <GeneralDivider />
             <GeneralFlex center>
               <NuxtLink
                 :href="switchLocalePath(loc.code)"
@@ -76,17 +75,17 @@ function openForm() {
                 {{ loc.name }}
               </NuxtLink>
             </GeneralFlex>
-          </template>
+          </GeneralFlex>
         </GeneralFlex>
 
-        <div class="menu-icon" @click="toogleMenu">
+        <div class="menu-icon" @click="isMenu = !isMenu">
           <span v-for="n in 3"></span>
         </div>
       </GeneralFlex>
     </GeneralContainer>
 
     <Transition name="menu-wrapper">
-      <div v-if="isMenu" class="menu-wrapper" @click="toogleMenu"></div>
+      <div v-if="isMenu" class="menu-wrapper" @click="closeMenu"></div>
     </Transition>
 
     <svg
@@ -201,6 +200,10 @@ function openForm() {
   opacity: 0;
 }
 
+.menu-bottom {
+  display: none;
+}
+
 @media all and (max-width: 1200px) {
   .links-list {
     gap: 1.25rem;
@@ -214,6 +217,10 @@ function openForm() {
 @media all and (max-width: 1023px) {
   .header-button {
     display: none;
+  }
+
+  .menu-bottom {
+    display: flex;
   }
 
   .links-list {

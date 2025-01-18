@@ -57,6 +57,10 @@ onUnmounted(() => {
   max-width: 400px;
   top: calc(100% + 1rem);
   z-index: 11;
+
+  @media all and (max-width: 767px) {
+    width: 90%;
+  }
 }
 
 .close-btn {

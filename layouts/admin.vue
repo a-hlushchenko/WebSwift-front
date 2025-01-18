@@ -2,7 +2,7 @@
 
 <template>
   <div class="app">
-    <AdminAside />
+    <AdminAside class="aside" />
     <MainNotification />
     <div class="pages">
       <slot></slot>
@@ -20,5 +20,13 @@
   padding: 1rem;
   overflow: auto;
   height: 100vh;
+}
+@media all and (max-width: 767px) {
+  .app {
+    display: block;
+  }
+  .aside {
+    display: none;
+  }
 }
 </style>

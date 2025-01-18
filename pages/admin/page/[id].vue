@@ -6,9 +6,10 @@ definePageMeta({
   middleware: "auth",
 });
 
-const notificationStore = useNotificationStore();
+const switchLocalePath = useSwitchLocalePath();
+const { setLocale, locale, locales } = useI18n();
 
-const { setLocale, locale } = useI18n();
+const notificationStore = useNotificationStore();
 
 const route = useRoute();
 const pageId = computed(() => route.params.id);
@@ -61,21 +62,15 @@ function closeAddPopup() {
         />
       </GeneralFlex>
 
-      <GeneralFlex class="header-lang-list" center>
-        <button
+      <GeneralFlex center>
+        <NuxtLink
+          :href="switchLocalePath(loc.code)"
+          v-for="loc in locales"
           class="header-lang"
-          :class="{ active: locale === 'en' }"
-          @click="setLocale('en')"
+          :class="{ active: locale === loc.code }"
         >
-          EN
-        </button>
-        <button
-          class="header-lang"
-          :class="{ active: locale === 'ua' }"
-          @click="setLocale('ua')"
-        >
-          UA
-        </button>
+          {{ loc.name }}
+        </NuxtLink>
       </GeneralFlex>
     </GeneralFlex>
 
