@@ -169,7 +169,7 @@ const handleMouseLeave = () => {
 
 <style scoped>
 .hero-wrapper {
-  height: calc(100vh - var(--header) - env(safe-area-inset-bottom));
+  height: calc(100vh - var(--header));
   position: sticky;
   top: var(--header);
 }
@@ -274,9 +274,9 @@ const handleMouseLeave = () => {
 
 @media all and (max-width: 1023px) {
   .hero {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
   .hero-img-wrapper {
@@ -293,6 +293,13 @@ const handleMouseLeave = () => {
 
   .hero-wrapper {
     padding: 1rem 0;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .hero {
+    justify-content: start;
+    gap: 2rem;
   }
 }
 </style>
