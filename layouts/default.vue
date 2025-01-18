@@ -10,7 +10,6 @@ useSeoMeta({
   twitterTitle: "WebSwift",
   twitterDescription: t("home.head.description"),
   twitterImage: "http://web-swift.co/logo.png",
-  ogUrl: "https://web-swift.co",
 });
 </script>
 
