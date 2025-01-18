@@ -290,5 +290,9 @@ const handleMouseLeave = () => {
   .hero-mouse {
     display: none;
   }
+
+  .hero-wrapper {
+    padding: 1rem 0;
+  }
 }
 </style>
