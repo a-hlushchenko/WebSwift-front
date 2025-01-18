@@ -174,5 +174,9 @@ function openForm() {
   .header-logo {
     height: 32px;
   }
+
+  .header-wrapper {
+    background-color: var(--bg);
+  }
 }
 </style>

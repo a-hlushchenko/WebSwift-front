@@ -169,7 +169,7 @@ const handleMouseLeave = () => {
 
 <style scoped>
 .hero-wrapper {
-  height: calc(100vh - var(--header));
+  height: calc(100vh - var(--header) - env(safe-area-inset-bottom));
   position: sticky;
   top: var(--header);
 }
@@ -276,6 +276,7 @@ const handleMouseLeave = () => {
   .hero {
     grid-template-columns: 1fr;
     justify-items: center;
+    gap: 1rem;
   }
 
   .hero-img-wrapper {
@@ -283,7 +284,7 @@ const handleMouseLeave = () => {
   }
 
   .hero-img {
-    max-height: 50vh;
+    max-height: 40vh;
   }
 
   .hero-mouse {
