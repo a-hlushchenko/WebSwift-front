@@ -6,10 +6,22 @@ useSeoMeta({
   description: t("home.head.description"),
   ogTitle: "WebSwift",
   ogDescription: t("home.head.description"),
-  ogImage: "https://web-swift.co/logo.png",
+  ogType: "website",
+  ogImage: "/logo.png",
+  ogUrl: "https://web-swift.co",
   twitterTitle: "WebSwift",
   twitterDescription: t("home.head.description"),
-  twitterImage: "http://web-swift.co/logo.png",
+  twitterImage: "/logo.png",
+});
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      href: "/favicon.ico",
+    },
+  ],
 });
 </script>
 

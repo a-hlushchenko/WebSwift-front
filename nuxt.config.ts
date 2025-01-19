@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     head: {
       title: "WebSwift",
       meta: [
-        { property: "og:title", content: "WebSwift" },
         {
           name: "viewport",
           content: "width=device-width, initial-scale=1.0",
