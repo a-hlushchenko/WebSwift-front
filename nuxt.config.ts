@@ -53,17 +53,10 @@ export default defineNuxtConfig({
         domainDefault: true,
       },
     ],
-    experimental: {
-      localeDetector: "localeDetector.ts",
-    },
+
     compilation: {
       escapeHtml: false,
       strictMessage: false,
-    },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_redirected",
-      redirectOn: "root",
     },
   },
 
